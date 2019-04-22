@@ -12,7 +12,8 @@ export default class Categories extends React.Component {
         categories: [],
         selectedCategory: 0,
         showQuestion: false,
-        question: {}
+        question: null,
+        questionLoading: false
     }
 
     componentDidMount() {
@@ -20,7 +21,7 @@ export default class Categories extends React.Component {
         const db = firebase.firestore()
         db.collection('categories').get()
             .then((result) => {
-                
+
                 result.forEach((doc) => {
                     cats.push({
                         'name': doc.data().name,
@@ -33,28 +34,53 @@ export default class Categories extends React.Component {
             })
     }
 
-    handleCategoryClick = (evet, index) => {
+    handleCategoryClick = (id) => {
         this.setState({
-            selectedCategory: index
+            selectedCategory: id,
+            showQuestion: true
         })
+
+        var q = []
+
+        const db = firebase.firestore()
+
+
+
+        db.collection('questions')
+            .where("category", "==", parseInt(id))
+            .get()
+            .then((result) => {
+                result.forEach((doc) => {
+                    q.push(doc.data())
+                })
+
+                const index = Math.floor(Math.random(q.length))
+
+                this.setState({
+                    question: q[index]
+                })
+            })
     }
 
     render() {
         return (
             <div>
                 <List>
-                    {this.state.categories.map(c => 
-                        <ListItem key={c.id} 
+                    {this.state.categories.map(c =>
+                        <ListItem key={c.id}
                             button
                             selected={this.state.selectedCategory === c.id}
-                            onClick={event => this.handleCategoryClick(event, c.id)}>
+                            onClick={evt => this.handleCategoryClick(c.id)}>
                             <ListItemText primary={c.name} />
                         </ListItem>
                     )}
                 </List>
                 {
-                    showQuestion &&
-                    <Question category={this.state.selectedCategory} />
+                    this.state.showQuestion
+                    &&
+                    <Question 
+                        category={this.state.selectedCategory} 
+                        question={this.state.question} />
                 }
             </div>
         )
