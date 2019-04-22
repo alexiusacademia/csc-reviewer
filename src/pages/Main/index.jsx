@@ -1,21 +1,11 @@
 import React from 'react'
 import * as firebase from 'firebase'
+import Login from '../../components/Login'
 
 export default class Main extends React.Component {
 
     state = {
         loggedIn: false
-    }
-
-    login = () => {
-        const provider = new firebase.auth.GoogleAuthProvider()
-        firebase.auth().signInWithPopup(provider)
-            .then((result) => {
-                console.log(result.user)
-                this.setState({
-                    loggedIn: true
-                })
-            })
     }
 
     logout = () => {
@@ -46,10 +36,7 @@ export default class Main extends React.Component {
                 {
                     !this.state.loggedIn
                     &&
-                    <div>
-                        <p>Not Logged in</p>
-                        <button onClick={this.login}>Login</button>
-                    </div>
+                    <Login />
                 }
                 {
                     this.state.loggedIn
