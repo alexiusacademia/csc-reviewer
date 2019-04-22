@@ -6,7 +6,7 @@ export default class Login extends React.Component {
         const provider = new firebase.auth.GoogleAuthProvider()
         firebase.auth().signInWithPopup(provider)
             .then((result) => {
-                console.log(result.user)
+                // console.log(result.user)
                 this.setState({
                     loggedIn: true
                 })

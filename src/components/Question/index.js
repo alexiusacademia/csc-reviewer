@@ -5,6 +5,7 @@ export default class Question extends React.Component {
 
     componentDidMount() {
         console.log(this.props)
+        const cat = this.props.category
     }
 
     render() {

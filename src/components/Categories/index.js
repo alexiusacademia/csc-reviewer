@@ -4,12 +4,15 @@ import * as firebase from 'firebase'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Question from '../Question'
 
 export default class Categories extends React.Component {
 
     state = {
         categories: [],
-        selectedCategory: 0
+        selectedCategory: 0,
+        showQuestion: false,
+        question: {}
     }
 
     componentDidMount() {
@@ -41,7 +44,7 @@ export default class Categories extends React.Component {
             <div>
                 <List>
                     {this.state.categories.map(c => 
-                        <ListItem key={c['id']} 
+                        <ListItem key={c.id} 
                             button
                             selected={this.state.selectedCategory === c.id}
                             onClick={event => this.handleCategoryClick(event, c.id)}>
@@ -49,7 +52,10 @@ export default class Categories extends React.Component {
                         </ListItem>
                     )}
                 </List>
-
+                {
+                    showQuestion &&
+                    <Question category={this.state.selectedCategory} />
+                }
             </div>
         )
     }
