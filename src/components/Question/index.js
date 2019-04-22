@@ -16,8 +16,14 @@ export default class Question extends React.Component {
     render() {
         return (
             <div>
-                { this.state.question !== null &&
+                { 
+                    this.state.question !== null &&
+                    !this.props.questionLoading &&
                     this.state.question.question
+                }
+                {
+                    this.props.questionLoading &&
+                    <Typography variant='display1'>Loading question...</Typography>
                 }
             </div>
         )

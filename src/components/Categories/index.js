@@ -37,14 +37,15 @@ export default class Categories extends React.Component {
     handleCategoryClick = (id) => {
         this.setState({
             selectedCategory: id,
-            showQuestion: true
+            showQuestion: true,
+            questionLoading: true
         })
 
         var q = []
 
         const db = firebase.firestore()
 
-
+        console.log('Clicked')
 
         db.collection('questions')
             .where("category", "==", parseInt(id))
@@ -54,10 +55,14 @@ export default class Categories extends React.Component {
                     q.push(doc.data())
                 })
 
-                const index = Math.floor(Math.random(q.length))
+                const index = Math.floor(Math.random() * q.length)
 
                 this.setState({
                     question: q[index]
+                })
+
+                this.setState({
+                    questionLoading: false
                 })
             })
     }
@@ -80,7 +85,8 @@ export default class Categories extends React.Component {
                     &&
                     <Question 
                         category={this.state.selectedCategory} 
-                        question={this.state.question} />
+                        question={this.state.question}
+                        questionLoading={this.state.questionLoading} />
                 }
             </div>
         )
