@@ -2,3 +2,12 @@
     margin: 30px;
     padding: 20px;
 }
+
+.choice {
+    padding: 10px;
+    border-radius: 0;
+}
+
+.question {
+    padding-bottom: 20px;
+}
