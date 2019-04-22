@@ -23,7 +23,7 @@ export default class Question extends React.Component {
                 }
                 {
                     this.props.questionLoading &&
-                    <Typography variant='display1'>Loading question...</Typography>
+                    <Typography variant='body1'>Loading question...</Typography>
                 }
             </div>
         )

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import {Route} from 'react-router-dom'
-import Question from './pages/Question'
 import './App.css';
 import Header from './components/Header'
 import Main from './pages/Main';
@@ -30,7 +28,6 @@ class App extends Component {
       <div>
         <Header loggedIn={this.state.loggedIn}/>
         <Main loggedIn={this.state.loggedIn} />
-        <Route exact path='/question/:cat' component={Question} /> 
       </div>
     );
   }
