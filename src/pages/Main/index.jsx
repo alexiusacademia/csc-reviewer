@@ -1,6 +1,6 @@
 import React from 'react'
 import Login from '../../components/Login'
-import Categories from '../Categories'
+import Categories from '../../components/Categories'
 
 export default class Main extends React.Component {
 
