@@ -1,19 +1,12 @@
 import React from 'react'
 import * as firebase from 'firebase'
 import Login from '../../components/Login'
+import Logout from '../../components/Logout'
 
 export default class Main extends React.Component {
 
     state = {
         loggedIn: false
-    }
-
-    logout = () => {
-        firebase.auth().signOut().then(() => {
-            this.setState({
-                loggedIn: false
-            })
-        })
     }
 
     componentDidMount() {
@@ -41,10 +34,7 @@ export default class Main extends React.Component {
                 {
                     this.state.loggedIn
                     &&
-                    <div>
-                        Logged in
-                        <button onClick={this.logout}>Logout</button>    
-                    </div>
+                    <Logout />
                 }
             </div>
         )
