@@ -39,7 +39,8 @@ export default class Categories extends React.Component {
         this.setState({
             selectedCategory: id,
             showQuestion: true,
-            questionLoading: true
+            questionLoading: true,
+            correctAnswer: ''
         })
 
         var q = []
@@ -59,7 +60,8 @@ export default class Categories extends React.Component {
                 const index = Math.floor(Math.random() * q.length)
 
                 this.setState({
-                    question: q[index]
+                    question: q[index],
+                    correctAnswer: q[index].choices[0]
                 })
 
                 this.setState({
@@ -90,6 +92,7 @@ export default class Categories extends React.Component {
                     <Question
                         category={this.state.selectedCategory}
                         question={this.state.question}
+                        correctAnswer={this.state.correctAnswer}
                         questionLoading={this.state.questionLoading} />
                 }
             </div>
