@@ -1,6 +1,7 @@
 import React from 'react'
 import * as firebase from 'firebase'
-import { Typography } from '@material-ui/core';
+import { Typography, Paper } from '@material-ui/core';
+import './index.css'
 
 export default class Question extends React.Component {
     state = {
@@ -19,7 +20,9 @@ export default class Question extends React.Component {
                 { 
                     this.state.question !== null &&
                     !this.props.questionLoading &&
-                    this.state.question.question
+                    <Paper className='paper'>
+                        { this.state.question.question }
+                    </Paper>
                 }
                 {
                     this.props.questionLoading &&
