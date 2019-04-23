@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import * as firebase from 'firebase'
 import { Typography, Paper, Grid, Button, LinearProgress } from '@material-ui/core';
 import './index.css'
@@ -97,7 +97,7 @@ export default class Question extends React.Component {
 
     render() {
         return (
-            <div>
+            <Fragment>
                 {
                     !this.state.questionLoading &&
                     <Paper className='paper'>
@@ -149,7 +149,7 @@ export default class Question extends React.Component {
                     </Paper>
                 }
 
-            </div>
+            </Fragment>
         )
     }
 }
