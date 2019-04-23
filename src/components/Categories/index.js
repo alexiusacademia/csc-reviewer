@@ -42,34 +42,8 @@ export default class Categories extends React.Component {
     handleCategoryClick = (id) => {
         this.setState({
             selectedCategory: id,
-            showQuestion: true,
-            questionLoading: true,
-            correctAnswer: ''
+            showQuestion: true
         })
-
-        var q = []
-
-        const db = firebase.firestore()
-
-        db.collection('questions')
-            .where("category", "==", parseInt(id))
-            .get()
-            .then((result) => {
-                result.forEach((doc) => {
-                    q.push(doc.data())
-                })
-
-                const index = Math.floor(Math.random() * q.length)
-
-                this.setState({
-                    question: q[index],
-                    correctAnswer: q[index].choices[0]
-                })
-
-                this.setState({
-                    questionLoading: false
-                })
-            })
     }
 
     render() {

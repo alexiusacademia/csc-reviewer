@@ -4,7 +4,6 @@ import { Typography, Paper, Grid, Button, LinearProgress } from '@material-ui/co
 import './index.css'
 
 export default class Question extends React.Component {
-
     state = {
         choices: [],
         questionLoading: true,
@@ -21,11 +20,11 @@ export default class Question extends React.Component {
         this.getQuestion(this.props.category)
     }
 
-    componentWillReceiveProps() {
+    componentWillReceiveProps(props) {
         this.setState({
-            category: this.props.category
+            category: props.category
         })
-        this.getQuestion(this.props.category)
+        this.getQuestion(props.category)
     }
 
     getQuestion = (cat) => {
