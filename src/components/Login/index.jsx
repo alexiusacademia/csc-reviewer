@@ -19,8 +19,8 @@ export default class Login extends React.Component {
         return (
             <div>
                 <Grid>
-                    <Paper className="login-paper">
-                        <Typography variant="title">
+                    <Paper className="login-paper" elevation={6}>
+                        <Typography variant="title" color="primary" className="login-subtitle">
                             Please login to use the service.
                         </Typography>
                         <img 
