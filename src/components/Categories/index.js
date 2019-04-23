@@ -98,10 +98,7 @@ export default class Categories extends React.Component {
                     this.state.showQuestion
                     &&
                     <Question
-                        category={this.state.selectedCategory}
-                        question={this.state.question}
-                        correctAnswer={this.state.correctAnswer}
-                        questionLoading={this.state.questionLoading} />
+                        category={this.state.selectedCategory} />
                 }
             </div>
         )

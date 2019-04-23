@@ -14,6 +14,10 @@
     padding-bottom: 20px;
 }
 
+.question-title {
+    text-align: center;
+}
+
 .correct {
     background-color: green !important;
     color: #ffffff;
@@ -27,4 +31,6 @@
 #btnNextQuestion {
     visibility: hidden;
     display: none;
+    margin-left: 10px;
+    margin-top: 5px;
 }
