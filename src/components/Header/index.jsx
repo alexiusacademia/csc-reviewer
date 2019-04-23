@@ -1,6 +1,7 @@
 import React from 'react'
 import { AppBar, Toolbar, Typography, Button } from '@material-ui/core'
 import Logout from '../../components/Logout'
+import './index.css'
 
 export default class Header extends React.Component {
 
@@ -8,7 +9,7 @@ export default class Header extends React.Component {
         return (
             <AppBar position='static'>
                 <Toolbar>
-                    <Typography variant="h5" color="inherit" >
+                    <Typography variant="h5" color="inherit" className="app-title">
                         Civil Service Reviewer
                     </Typography>
                     {
