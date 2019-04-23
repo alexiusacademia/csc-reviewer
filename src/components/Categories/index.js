@@ -6,11 +6,13 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider'
 import Question from '../Question'
+import { Typography } from '@material-ui/core';
 
 export default class Categories extends React.Component {
 
     state = {
         categories: [],
+        categoriesLoading: true,
         selectedCategory: 0,
         showQuestion: false,
         question: null,
@@ -30,7 +32,8 @@ export default class Categories extends React.Component {
                     })
                 })
                 this.setState({
-                    categories: cats
+                    categories: cats,
+                    categoriesLoading: false
                 })
             })
     }
@@ -73,7 +76,9 @@ export default class Categories extends React.Component {
     render() {
         return (
             <div>
-                <List>
+                {
+                    !this.state.categoriesLoading &&
+                    <List>
                     {this.state.categories.map(c =>
                         <div key={c.id}>
                             <ListItem
@@ -86,6 +91,11 @@ export default class Categories extends React.Component {
                         </div>
                     )}
                 </List>
+                }
+                {
+                    this.state.categoriesLoading &&
+                    <Typography>Loading categories...</Typography>
+                }
                 {
                     this.state.showQuestion
                     &&
