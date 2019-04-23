@@ -116,16 +116,16 @@ export default class Question extends React.Component {
 
     isEquation = (str) => {
         const x = str.substring(
-            str.lastIndexOf('{') + 1,
-            str.lastIndexOf('}')
+            str.lastIndexOf('$') + 1,
+            str.lastIndexOf(';')
         )
         return (x.length > 0)
     }
 
     getEquation = (str) => {
         const x = str.substring(
-            str.lastIndexOf('{') + 1,
-            str.lastIndexOf('}')
+            str.lastIndexOf('$') + 1,
+            str.lastIndexOf(';')
         )
         return x
     }
