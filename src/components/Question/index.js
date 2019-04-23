@@ -33,6 +33,14 @@ export default class Question extends React.Component {
         
     }
 
+    handleChoiceClick = (evt, answer) => {
+        if (answer === this.props.correctAnswer) {
+            evt.target.classList.add("correct")
+        } else {
+            evt.target.classList.add("wrong")
+        }
+    }
+
     render() {
         return (
             <div>
@@ -44,12 +52,10 @@ export default class Question extends React.Component {
                         </Typography>
                         <Grid container spacing={16}>
                             { this.shuffle(this.props.question.choices).map(choice => 
-                                <Grid item xs={12} sm={6} key={choice}>
-                                    <Paper className='choice'>
-                                        <Typography>
-                                            {choice}
-                                        </Typography>
-                                    </Paper>
+                                <Grid item xs={12} sm={6} key={choice} 
+                                onClick={evt => this.handleChoiceClick(evt, choice)}>
+                                    <div className='choice MuiPaper-root-10 MuiPaper-elevation2-14'>{choice}</div>
+                        
                                 </Grid>
                             ) }
                         </Grid>

@@ -9,7 +9,7 @@ export default class Header extends React.Component {
         return (
             <AppBar position='static'>
                 <Toolbar>
-                    <Typography variant="h5" color="inherit" className="app-title">
+                    <Typography variant="h5" className="app-title" color="inherit" >
                         Civil Service Reviewer
                     </Typography>
                     {

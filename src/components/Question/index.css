@@ -1,13 +1,25 @@
 .paper {
     margin: 30px;
     padding: 20px;
+    border-radius: 0 !important;
 }
 
 .choice {
     padding: 10px;
-    border-radius: 0;
+    border-radius: 0 !important;
+    cursor: pointer;
 }
 
 .question {
     padding-bottom: 20px;
+}
+
+.correct {
+    background-color: green !important;
+    color: #ffffff;
+}
+
+.wrong {
+    background-color: rgb(255, 0, 0) !important;
+    color: #ffffff;
 }
