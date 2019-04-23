@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import * as firebase from 'firebase'
 
 import List from '@material-ui/core/List';
@@ -48,38 +48,41 @@ export default class Categories extends React.Component {
 
     render() {
         return (
-            <Paper className='category-paper'>
-                <Typography variant='headline' className='bg'>
-                    Categories
+            <Fragment>
+                <Paper className='category-paper'>
+                    <Typography variant='headline' className='bg'>
+                        Categories
                 </Typography>
-                <Divider />
-                {
-                    !this.state.categoriesLoading &&
-                    <List>
-                    {this.state.categories.map(c =>
-                        <div key={c.id} className='bg'>
-                            <ListItem 
-                                button
-                                selected={this.state.selectedCategory === c.id}
-                                onClick={evt => this.handleCategoryClick(c.id)}>
-                                <ListItemText primary={c.name} />
-                            </ListItem>
-                            <Divider />
-                        </div>
-                    )}
-                </List>
-                }
-                {
-                    this.state.categoriesLoading &&
-                    <Typography>Loading categories...</Typography>
-                }
+                    <Divider />
+                    {
+                        !this.state.categoriesLoading &&
+                        <List>
+                            {this.state.categories.map(c =>
+                                <div key={c.id} className='bg'>
+                                    <ListItem
+                                        button
+                                        selected={this.state.selectedCategory === c.id}
+                                        onClick={evt => this.handleCategoryClick(c.id)}>
+                                        <ListItemText primary={c.name} />
+                                    </ListItem>
+                                    <Divider />
+                                </div>
+                            )}
+                        </List>
+                    }
+                    {
+                        this.state.categoriesLoading &&
+                        <Typography>Loading categories...</Typography>
+                    }
+
+                </Paper>
                 {
                     this.state.showQuestion
                     &&
                     <Question
                         category={this.state.selectedCategory} />
                 }
-            </Paper>
+            </Fragment>
         )
     }
 }

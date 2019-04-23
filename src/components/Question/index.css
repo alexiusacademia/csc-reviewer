@@ -40,9 +40,10 @@
 .loading-paper {
     width: 75%;
     height: 70px;
-    margin: 50px auto;
+    margin: 50px auto 30px auto;
     text-align: center;
     padding: 30px;
+    border: black solid 2px;
 }
 
 #answer-message {
