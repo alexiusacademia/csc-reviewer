@@ -1,11 +1,14 @@
 import React from 'react'
-import { Typography, Paper, Grid } from '@material-ui/core';
+import * as firebase from 'firebase'
+import { Typography, Paper, Grid, Button } from '@material-ui/core';
 import './index.css'
 
 export default class Question extends React.Component {
     
     state = {
-        choices: []
+        choices: [],
+        questionLoading: false,
+        showNextQuestionButton: false
     }
 
     shuffle = function (array) {
@@ -29,23 +32,52 @@ export default class Question extends React.Component {
     
     }
 
-    componentDidUpdate() {
-        
-    }
-
     handleChoiceClick = (evt, answer) => {
         if (answer === this.props.correctAnswer) {
             evt.target.classList.add("correct")
         } else {
             evt.target.classList.add("wrong")
         }
+
+        // Show Next button
+        document.getElementById('btnNextQuestion').setAttribute('style',
+            'visibility: visible; display: block;')
+
+    }
+
+    handleNextQuestionClick = (evt) => {
+        this.setState({
+
+        })
+        var q = []
+        firebase.firestore()
+            .collection('questions')
+            .where("category", "==", parseInt(this.props.category))
+            .get()
+            .then((result) => {
+                result.forEach((doc) => {
+                    q.push(doc.data())
+                })
+
+                const index = Math.floor(Math.random() * q.length)
+
+                this.setState({
+                    question: q[index],
+                    correctAnswer: q[index].choices[0]
+                })
+
+                this.setState({
+                    questionLoading: false,
+                    showNextQuestionButton: false
+                })
+            })
     }
 
     render() {
         return (
             <div>
                 { 
-                    !this.props.questionLoading &&
+                    !this.props.questionLoading && !this.state.questionLoading &&
                     <Paper className='paper'>
                         <Typography variant='subheading' className='question'>
                             { this.props.question.question }
@@ -58,13 +90,28 @@ export default class Question extends React.Component {
                         
                                 </Grid>
                             ) }
+
+                            
+                                <Button id="btnNextQuestion" 
+                                    xs={12} 
+                                    sm={6} 
+                                    variant="contained" 
+                                    color="primary" 
+                                    onClick={this.handleNextQuestionClick}>
+                                    Next Question
+                                </Button>
+                                
+                            
                         </Grid>
                     </Paper>
                 }
+                
                 {
-                    this.props.questionLoading &&
+                    (this.props.questionLoading || this.state.loadingQuestion)
+                    &&
                     <Typography variant='body1'>Loading question...</Typography>
                 }
+                
             </div>
         )
     }

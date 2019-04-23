@@ -23,3 +23,8 @@
     background-color: rgb(255, 0, 0) !important;
     color: #ffffff;
 }
+
+#btnNextQuestion {
+    visibility: hidden;
+    display: none;
+}
