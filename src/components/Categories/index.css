@@ -14,3 +14,11 @@
     padding: 0;
     
 }
+
+.loading-paper {
+    width: 75%;
+    height: 70px;
+    margin: 50px auto 30px auto !important;
+    text-align: center;
+    padding: 30px;
+}

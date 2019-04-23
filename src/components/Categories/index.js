@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider'
 import Question from '../Question'
-import { Typography, Paper } from '@material-ui/core';
+import { Typography, Paper, LinearProgress } from '@material-ui/core';
 import './index.css'
 
 export default class Categories extends React.Component {
@@ -50,9 +50,9 @@ export default class Categories extends React.Component {
         return (
             <Fragment>
                 <Paper className='category-paper'>
-                    <Typography variant='headline' className='bg'>
+                    <Typography variant='headline' className='bg' color='inherit'>
                         Categories
-                </Typography>
+                    </Typography>
                     <Divider />
                     {
                         !this.state.categoriesLoading &&
@@ -72,7 +72,12 @@ export default class Categories extends React.Component {
                     }
                     {
                         this.state.categoriesLoading &&
-                        <Typography>Loading categories...</Typography>
+                        <Paper className='loading-paper'>
+                            <Typography variant='subheading'>
+                                Loading categories. Please wait.
+                            </Typography>
+                            <LinearProgress color='primary'/>
+                        </Paper>
                     }
 
                 </Paper>
