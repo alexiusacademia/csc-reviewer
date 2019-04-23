@@ -111,7 +111,7 @@ export default class Question extends React.Component {
 
                         <Grid container spacing={16}>
                             {this.shuffle(this.state.question.choices).map(choice =>
-                                <Grid item xs={12} key={choice}
+                                <Grid item xs={12} key={choice} className='choice-box'
                                     onClick={evt => this.handleChoiceClick(evt, choice)}>
                                     <div className='choice MuiPaper-root-10 MuiPaper-elevation2-14'>{choice}</div>
 
