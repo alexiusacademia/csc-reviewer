@@ -6,7 +6,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider'
 import Question from '../Question'
-import { Typography } from '@material-ui/core';
+import { Typography, Paper } from '@material-ui/core';
+import './index.css'
 
 export default class Categories extends React.Component {
 
@@ -73,7 +74,10 @@ export default class Categories extends React.Component {
 
     render() {
         return (
-            <div>
+            <Paper className='category-paper'>
+                <Typography variant='headline'>
+                    Categories
+                </Typography>
                 {
                     !this.state.categoriesLoading &&
                     <List>
@@ -100,7 +104,7 @@ export default class Categories extends React.Component {
                     <Question
                         category={this.state.selectedCategory} />
                 }
-            </div>
+            </Paper>
         )
     }
 }
