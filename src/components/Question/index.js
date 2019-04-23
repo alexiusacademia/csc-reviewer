@@ -17,13 +17,13 @@ export default class Question extends React.Component {
         question: {},
         correctAnswer: ''
     }
-    
+
     componentWillMount() {
         this.setState({
             category: this.props.category
         })
         this.getQuestion(this.props.category)
-        
+
     }
 
     componentWillReceiveProps(props) {
@@ -89,15 +89,22 @@ export default class Question extends React.Component {
             } else {
                 evt.target.classList.add("wrong")
             }
-    
+
             // Show Next button
             document.getElementById('btnNextQuestion').setAttribute('style',
                 'visibility: visible; display: block;')
-    
+
             // Show answer
             document.getElementById('answer-message').setAttribute('style',
                 'visibility: visible; display: block;')
-    
+
+            // Show explanation
+            if (this.state.question.explanation !== "") {
+                document.getElementById('explanation').setAttribute('style',
+                'display: block; visibility: visible;')
+            }
+            
+
             this.choiceHandler = false
         }
     }
@@ -126,7 +133,7 @@ export default class Question extends React.Component {
                                     onClick={
                                         evt => this.handleChoiceClick(evt, choice)
                                     }
-                                    >
+                                >
                                     <div className='choice MuiPaper-root-10 MuiPaper-elevation2-14'>{choice}</div>
 
                                 </Grid>
@@ -137,13 +144,26 @@ export default class Question extends React.Component {
                                     The correct answer is {this.state.correctAnswer}.
                                 </Typography>
                             </Paper>
+                            {
+                                this.state.question.explanation !== "" &&
+                                <Grid item xs={12}>
+                                    <Paper id='explanation'>
+
+                                        {this.state.question.explanation.split('\\n').map((item) =>
+                                            <div key={item}>{item}<br /><br /></div>
+                                        )
+                                        }
+
+                                    </Paper>
+                                </Grid>
+                            }
 
                             <Button id="btnNextQuestion"
                                 xs={12}
                                 variant="contained"
                                 color="primary"
                                 onClick={this.handleNextQuestionClick}
-                                >
+                            >
                                 Next Question
                             </Button>
 

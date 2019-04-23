@@ -53,3 +53,16 @@
     display: none;
     background-color: orange;
 }
+
+#explanation {
+    visibility: hidden;
+    display: none;
+    background-color: burlywood;
+    font-style: italic;
+    border-radius: 0;
+    padding: 10px;
+}
+
+.display-linebreak {
+    white-space: nowrap;
+}
