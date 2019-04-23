@@ -13,7 +13,7 @@ export default class Question extends React.Component {
         question: {},
         correctAnswer: ''
     }
-
+    
     componentWillMount() {
         this.setState({
             category: this.props.category
@@ -48,10 +48,7 @@ export default class Question extends React.Component {
 
                 this.setState({
                     question: q[index],
-                    correctAnswer: q[index].choices[0]
-                })
-
-                this.setState({
+                    correctAnswer: q[index].choices[0],
                     questionLoading: false
                 })
             })
@@ -89,34 +86,14 @@ export default class Question extends React.Component {
         document.getElementById('btnNextQuestion').setAttribute('style',
             'visibility: visible; display: block;')
 
+        // Show answer
+        document.getElementById('answer-message').setAttribute('style',
+            'visibility: visible; display: block;')
+
     }
 
     handleNextQuestionClick = (evt) => {
-        this.setState({
-
-        })
-        var q = []
-        firebase.firestore()
-            .collection('questions')
-            .where("category", "==", parseInt(this.state.category))
-            .get()
-            .then((result) => {
-                result.forEach((doc) => {
-                    q.push(doc.data())
-                })
-
-                const index = Math.floor(Math.random() * q.length)
-
-                this.setState({
-                    question: q[index],
-                    correctAnswer: q[index].choices[0]
-                })
-
-                this.setState({
-                    questionLoading: false,
-                    showNextQuestionButton: false
-                })
-            })
+        this.getQuestion(this.state.category)
     }
 
     render() {
@@ -143,10 +120,9 @@ export default class Question extends React.Component {
                             )}
 
                             <Paper id='answer-message' elevation={4}>
-                                {
-                                    this.state.correctAnswer === this.answer &&
-                                    <h6>You got it right!</h6>
-                                }
+                                <Typography variant='h6' color='inherit'>
+                                    The correct answer is {this.state.correctAnswer}.
+                                </Typography>
                             </Paper>
 
                             <Button id="btnNextQuestion"
@@ -167,7 +143,7 @@ export default class Question extends React.Component {
                     this.state.questionLoading
                     &&
                     <Paper className='loading-paper'>
-                        <Typography variant='headline'>
+                        <Typography variant='subheading'>
                             Loading question. Please wait.
                         </Typography>
                         <LinearProgress color='primary' />

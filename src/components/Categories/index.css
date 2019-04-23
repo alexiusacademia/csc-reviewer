@@ -1,7 +1,16 @@
 .category-paper {
-    max-width: 300px;
-    margin: 0 auto;
-    padding: 0 !important;
+    max-width: 400px;
+    margin: 0 auto 0 auto;
+    padding-bottom: 0 !important;
     text-align: center;
     border-radius: 0 !important;
+}
+
+.bg {
+    background-color: aqua;
+}
+
+.category-paper ul {
+    padding: 0;
+    
 }

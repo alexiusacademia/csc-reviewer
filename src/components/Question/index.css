@@ -1,9 +1,9 @@
 .paper {
-    margin: 30px;
+    margin: 0 30px;
     padding: 20px;
     border-radius: 0 !important;
-    max-width: 300px;
-    margin: 50px auto;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 .choice {
@@ -43,4 +43,12 @@
     margin: 50px auto;
     text-align: center;
     padding: 30px;
+}
+
+#answer-message {
+    margin: 10px;
+    visibility: hidden;
+    padding: 10px;
+    display: none;
+    background-color: orange;
 }

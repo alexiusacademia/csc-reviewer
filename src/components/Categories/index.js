@@ -75,15 +75,16 @@ export default class Categories extends React.Component {
     render() {
         return (
             <Paper className='category-paper'>
-                <Typography variant='headline'>
+                <Typography variant='headline' className='bg'>
                     Categories
                 </Typography>
+                <Divider />
                 {
                     !this.state.categoriesLoading &&
                     <List>
                     {this.state.categories.map(c =>
-                        <div key={c.id}>
-                            <ListItem
+                        <div key={c.id} className='bg'>
+                            <ListItem 
                                 button
                                 selected={this.state.selectedCategory === c.id}
                                 onClick={evt => this.handleCategoryClick(c.id)}>
