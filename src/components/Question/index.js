@@ -4,6 +4,11 @@ import { Typography, Paper, Grid, Button, LinearProgress } from '@material-ui/co
 import './index.css'
 
 export default class Question extends React.Component {
+    constructor(props) {
+        super(props)
+        this.choiceHandler = true
+    }
+
     state = {
         choices: [],
         questionLoading: true,
@@ -18,6 +23,7 @@ export default class Question extends React.Component {
             category: this.props.category
         })
         this.getQuestion(this.props.category)
+        
     }
 
     componentWillReceiveProps(props) {
@@ -50,6 +56,8 @@ export default class Question extends React.Component {
                     correctAnswer: q[index].choices[0],
                     questionLoading: false
                 })
+
+                this.choiceHandler = true
             })
     }
 
@@ -75,20 +83,25 @@ export default class Question extends React.Component {
     }
 
     handleChoiceClick = (evt, answer) => {
-        if (answer === this.state.correctAnswer) {
-            evt.target.classList.add("correct")
+        if (this.choiceHandler) {
+            if (answer === this.state.correctAnswer) {
+                evt.target.classList.add("correct")
+            } else {
+                evt.target.classList.add("wrong")
+            }
+    
+            // Show Next button
+            document.getElementById('btnNextQuestion').setAttribute('style',
+                'visibility: visible; display: block;')
+    
+            // Show answer
+            document.getElementById('answer-message').setAttribute('style',
+                'visibility: visible; display: block;')
+    
+            this.choiceHandler = false
         } else {
-            evt.target.classList.add("wrong")
+            console.log(this.choiceHandler)
         }
-
-        // Show Next button
-        document.getElementById('btnNextQuestion').setAttribute('style',
-            'visibility: visible; display: block;')
-
-        // Show answer
-        document.getElementById('answer-message').setAttribute('style',
-            'visibility: visible; display: block;')
-
     }
 
     handleNextQuestionClick = (evt) => {
@@ -111,8 +124,11 @@ export default class Question extends React.Component {
 
                         <Grid container spacing={16}>
                             {this.shuffle(this.state.question.choices).map(choice =>
-                                <Grid item xs={12} key={choice} className='choice-box'
-                                    onClick={evt => this.handleChoiceClick(evt, choice)}>
+                                <Grid item xs={12} key={choice} id='choice-box'
+                                    onClick={
+                                        evt => this.handleChoiceClick(evt, choice)
+                                    }
+                                    >
                                     <div className='choice MuiPaper-root-10 MuiPaper-elevation2-14'>{choice}</div>
 
                                 </Grid>
