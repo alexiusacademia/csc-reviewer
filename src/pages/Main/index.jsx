@@ -2,12 +2,13 @@ import React from 'react'
 import Login from '../../components/Login'
 import Categories from '../../components/Categories'
 import './index.css'
+import { Grid } from '@material-ui/core';
 
 export default class Main extends React.Component {
     
     render() {
         return (
-            <div>
+            <Grid>
                 {
                     !this.props.loggedIn &&
                     <Login />
@@ -16,7 +17,7 @@ export default class Main extends React.Component {
                     this.props.loggedIn &&
                     <Categories />
                 }
-            </div>
+            </Grid>
         )
     }
 }

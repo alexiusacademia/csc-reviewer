@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import * as firebase from 'firebase'
 import { Typography, Paper, Grid, Button, LinearProgress } from '@material-ui/core';
 import './index.css'
+import {Provider, Node} from '@nteract/mathjax'
 
 export default class Question extends React.Component {
     constructor(props) {
@@ -113,6 +114,22 @@ export default class Question extends React.Component {
         this.getQuestion(this.state.category)
     }
 
+    isEquation = (str) => {
+        const x = str.substring(
+            str.lastIndexOf('{') + 1,
+            str.lastIndexOf('}')
+        )
+        return (x.length > 0)
+    }
+
+    getEquation = (str) => {
+        const x = str.substring(
+            str.lastIndexOf('{') + 1,
+            str.lastIndexOf('}')
+        )
+        return x
+    }
+
     render() {
         return (
             <Fragment>
@@ -135,7 +152,6 @@ export default class Question extends React.Component {
                                     }
                                 >
                                     <div className='choice MuiPaper-root-10 MuiPaper-elevation2-14'>{choice}</div>
-
                                 </Grid>
                             )}
 
@@ -150,7 +166,18 @@ export default class Question extends React.Component {
                                     <Paper id='explanation'>
 
                                         {this.state.question.explanation.split('\\n').map((item) =>
-                                            <div key={item}>{item}<br /><br /></div>
+                                            <div key={item}>
+                                                {
+                                                    this.isEquation(item) &&
+                                                    <Provider>
+                                                    <Node inline>{this.getEquation(item)}</Node>
+                                                    </Provider>                                             
+                                                }
+                                                {
+                                                    !this.isEquation(item) &&
+                                                    <div>{item}</div>
+                                                }
+                                            </div>
                                         )
                                         }
 
