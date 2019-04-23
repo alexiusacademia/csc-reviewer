@@ -99,8 +99,6 @@ export default class Question extends React.Component {
                 'visibility: visible; display: block;')
     
             this.choiceHandler = false
-        } else {
-            console.log(this.choiceHandler)
         }
     }
 
@@ -124,7 +122,7 @@ export default class Question extends React.Component {
 
                         <Grid container spacing={16}>
                             {this.shuffle(this.state.question.choices).map(choice =>
-                                <Grid item xs={12} key={choice} id='choice-box'
+                                <Grid item xs={12} sm={6} md={3} key={choice} id='choice-box'
                                     onClick={
                                         evt => this.handleChoiceClick(evt, choice)
                                     }
