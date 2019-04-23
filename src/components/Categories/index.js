@@ -50,8 +50,6 @@ export default class Categories extends React.Component {
 
         const db = firebase.firestore()
 
-        console.log('Clicked')
-
         db.collection('questions')
             .where("category", "==", parseInt(id))
             .get()
