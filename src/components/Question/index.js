@@ -1,6 +1,6 @@
 import React from 'react'
 import * as firebase from 'firebase'
-import { Typography, Paper, Grid, Button } from '@material-ui/core';
+import { Typography, Paper, Grid, Button, LinearProgress } from '@material-ui/core';
 import './index.css'
 
 export default class Question extends React.Component {
@@ -135,7 +135,7 @@ export default class Question extends React.Component {
 
                         <Grid container spacing={16}>
                             {this.shuffle(this.state.question.choices).map(choice =>
-                                <Grid item xs={12} sm={6} key={choice}
+                                <Grid item xs={12} key={choice}
                                     onClick={evt => this.handleChoiceClick(evt, choice)}>
                                     <div className='choice MuiPaper-root-10 MuiPaper-elevation2-14'>{choice}</div>
 
@@ -151,7 +151,6 @@ export default class Question extends React.Component {
 
                             <Button id="btnNextQuestion"
                                 xs={12}
-                                sm={6}
                                 variant="contained"
                                 color="primary"
                                 onClick={this.handleNextQuestionClick}
@@ -167,7 +166,12 @@ export default class Question extends React.Component {
                 {
                     this.state.questionLoading
                     &&
-                    <Typography variant='body1'>Loading question...</Typography>
+                    <Paper className='loading-paper'>
+                        <Typography variant='headline'>
+                            Loading question. Please wait.
+                        </Typography>
+                        <LinearProgress color='primary' />
+                    </Paper>
                 }
 
             </div>
