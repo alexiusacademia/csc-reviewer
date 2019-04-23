@@ -7,7 +7,7 @@ import * as firebase from 'firebase'
 class App extends Component {
 
   state = {
-    loggedIn: false
+    loggedIn: true
   }
 
   componentDidMount() {
@@ -23,6 +23,7 @@ class App extends Component {
       }
     })
   }
+  
   render() {
     return (
       <div>
