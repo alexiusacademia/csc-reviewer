@@ -1,6 +1,6 @@
 import React from 'react'
 import * as firebase from 'firebase'
-import {Button, withStyles} from '@material-ui/core'
+import {Button} from '@material-ui/core'
 
 export default class Logout extends React.Component {
 
