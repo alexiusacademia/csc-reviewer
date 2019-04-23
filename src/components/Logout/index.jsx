@@ -1,5 +1,6 @@
 import React from 'react'
 import * as firebase from 'firebase'
+import {Button, withStyles} from '@material-ui/core'
 
 export default class Logout extends React.Component {
 
@@ -16,8 +17,7 @@ export default class Logout extends React.Component {
         return (
             <div>
                 {
-                    !this.loggedIn &&
-                    <button onClick={this.logout}>Logout</button>
+                    <Button variant="contained" color="secondary" onClick={this.logout}>Logout</Button>
                 }
             </div>
         )

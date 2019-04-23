@@ -1,5 +1,7 @@
 import React from 'react'
 import * as firebase from 'firebase'
+import { Paper, Typography, Link } from '@material-ui/core'
+import './index.css'
 
 export default class Login extends React.Component {
     login = () => {
@@ -16,8 +18,15 @@ export default class Login extends React.Component {
     render() {
         return (
             <div>
-                <p>Not Logged in</p>
-                <button onClick={this.login}>Login</button>
+                <Paper className="login-paper">
+                    <Typography variant="title">
+                        Please login to use the service.
+                    </Typography>
+                    <img 
+                        onClick={this.login} src="assets/btn_google_signin_dark_normal_web.png"
+                        className="signin-button"/>
+                </Paper>
+                
             </div>
         )
     }
