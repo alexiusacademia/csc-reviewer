@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppBar, Toolbar, Typography, IconButton, Drawer } from '@material-ui/core'
+import { AppBar, Toolbar, Typography, IconButton, Drawer, Hidden } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import Categories from '../Categories'
 import Logout from '../../components/Logout'
@@ -17,9 +17,12 @@ export default class Header extends React.Component {
                     {
                         this.props.loggedIn
                         &&
-                        <IconButton color='inherit' onClick={this.toggleDrawer}>
-                            <MenuIcon />
-                        </IconButton>
+                        <Hidden smUp implementation='css'>
+                            <IconButton color='inherit' onClick={this.toggleDrawer}>
+                                <MenuIcon />
+                            </IconButton>
+                        </Hidden>
+
                     }
 
                     <Typography variant="h5" className="app-title" color="inherit" >

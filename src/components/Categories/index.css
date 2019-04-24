@@ -1,24 +1,20 @@
 .category-paper {
-    /* max-width: 400px; */
-    margin: 0 auto 0 auto;
-    padding-bottom: 0 !important;
     text-align: center;
-    border-radius: 0 !important;
+    color: darksalmon;
 }
 
 .bg {
-    background-color: aqua;
+    /*background-color: aqua;*/
 }
 
 .category-paper ul {
     padding: 0;
-    
 }
 
 .loading-paper {
-    width: 100px;
+    width: 240px;
     height: 70px;
-    margin: 50px 10px 30px 10px !important;
+    margin: auto !important;
     text-align: center;
     padding: 30px;
 }
