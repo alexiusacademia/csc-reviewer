@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import * as firebase from 'firebase'
 import { Typography, Paper, Grid, Button, LinearProgress } from '@material-ui/core';
 import './index.css'
-import {Provider, Node} from '@nteract/mathjax'
+import { Provider, Node } from '@nteract/mathjax'
 
 export default class Question extends React.Component {
     constructor(props) {
@@ -57,7 +57,7 @@ export default class Question extends React.Component {
                         correctAnswer: q[index].choices[0],
                         questionLoading: false
                     })
-    
+
                     this.choiceHandler = true
                 } else {
                     document.getElementById('loading-paper').setAttribute('style',
@@ -106,9 +106,9 @@ export default class Question extends React.Component {
             // Show explanation
             if (this.state.question.explanation !== "") {
                 document.getElementById('explanation').setAttribute('style',
-                'display: block; visibility: visible;')
+                    'display: block; visibility: visible;')
             }
-            
+
 
             this.choiceHandler = false
         }
@@ -145,7 +145,22 @@ export default class Question extends React.Component {
                         </Typography>
 
                         <Typography variant='subheading' className='question'>
-                            {this.state.question.question}
+                            {
+                                this.state.question.question.split('\\n').map((item, id) =>
+                                    <div key={id}>
+                                        {
+                                            this.isEquation(item) &&
+                                            <Provider>
+                                                <Node inline>{this.getEquation(item)}</Node>
+                                            </Provider>
+                                        }
+                                        {
+                                            !this.isEquation(item) &&
+                                            <div>{item}</div>
+                                        }
+                                    </div>
+                                )
+                            }
                         </Typography>
 
                         <Grid container spacing={16}>
@@ -174,8 +189,8 @@ export default class Question extends React.Component {
                                                 {
                                                     this.isEquation(item) &&
                                                     <Provider>
-                                                    <Node inline>{this.getEquation(item)}</Node>
-                                                    </Provider>                                             
+                                                        <Node inline>{this.getEquation(item)}</Node>
+                                                    </Provider>
                                                 }
                                                 {
                                                     !this.isEquation(item) &&
