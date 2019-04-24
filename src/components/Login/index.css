@@ -13,4 +13,6 @@
 
 .signin-button {
     cursor: pointer;
+    display: block;
+    width: 100%;
 }

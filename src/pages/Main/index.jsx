@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Login from '../../components/Login'
 import Categories from '../../components/Categories'
 import Question from '../../components/Question'
 import Header from '../../components/Header'
 import './index.css'
-import { Grid, Drawer, Hidden, CssBaseline, withStyles } from '@material-ui/core';
+import { Drawer, Hidden, CssBaseline, withStyles, Typography } from '@material-ui/core'
 
 const drawerWidth = 240
 
@@ -69,11 +69,6 @@ class Main extends React.Component {
     }
 
     render() {
-
-        const drawer = (
-            <Categories />
-        )
-
         const { classes, theme } = this.props;
 
         return (
@@ -88,7 +83,7 @@ class Main extends React.Component {
                             onClose={this.toggleDrawer(false)}
                             classes={{
                                 paper: classes.drawerPaper,
-                              }}>
+                            }}>
                             <div
                                 role="button"
                                 onClick={this.toggleDrawer(false)}
@@ -97,7 +92,7 @@ class Main extends React.Component {
                                     this.props.loggedIn &&
                                     <Categories onCategorySelected={this.categorySelected} />
                                 }
-                                
+
                             </div>
                         </Drawer>
                     </Hidden>
@@ -109,9 +104,25 @@ class Main extends React.Component {
                                 open
                                 classes={{
                                     paper: classes.drawerPaper,
-                                  }}>
+                                }}>
                                 <Categories onCategorySelected={this.categorySelected} />
                             </Drawer>
+                        }
+
+                        {
+                            !this.props.loggedIn &&
+                            <Fragment>
+                                <Typography variant='headline' color='inherit' className='side-intro-title'>
+                                    SyncSoft Solutions
+                                </Typography>
+                                <Typography paragraph className='side-intro-par'>
+                                    This service is brought to you by SyncSoft Solutions for free
+                                    as aide in the review for civil service exams. Please login to use the service.
+                                </Typography>
+                                <Typography paragraph className='side-intro-par'>
+                                    For support or inquiries, contact us at <em>syncsoftsolutions. software@gmail.com</em>
+                                </Typography>
+                            </Fragment>
                         }
 
                     </Hidden>
@@ -132,4 +143,4 @@ class Main extends React.Component {
     }
 }
 
-export default withStyles(styles, {withTheme: true})(Main)
+export default withStyles(styles, { withTheme: true })(Main)

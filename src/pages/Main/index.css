@@ -5,3 +5,13 @@
 .container {
     margin-top: 60px;
 }
+
+.side-intro-title {
+    text-align: center;
+    margin-top: 10px !important;
+}
+
+.side-intro-par {
+    text-align: justify;
+    padding: 10px;
+}
