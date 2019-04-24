@@ -12,7 +12,7 @@ export default class Header extends React.Component {
 
     render() {
         return (
-            <AppBar position='fixed' className='appbar'>
+            <AppBar position='fixed' className={this.props.class}>
                 <Toolbar>
                     {
                         this.props.loggedIn
