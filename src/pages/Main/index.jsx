@@ -2,20 +2,24 @@ import React from 'react'
 import Login from '../../components/Login'
 import Categories from '../../components/Categories'
 import './index.css'
-import { Grid } from '@material-ui/core';
+import { Grid, Hidden, Drawer } from '@material-ui/core';
 
 export default class Main extends React.Component {
-    
     render() {
+
+        const drawer = (
+            <Categories />
+        )
+
         return (
-            <Grid>
+            <Grid className='container'>
                 {
                     !this.props.loggedIn &&
                     <Login />
                 }
                 {
-                    this.props.loggedIn &&
-                    <Categories />
+                    // this.props.loggedIn &&
+                    // <Categories />
                 }
             </Grid>
         )
