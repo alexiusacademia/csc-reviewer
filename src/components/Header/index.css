@@ -1,3 +1,7 @@
 .app-title {
     flex: 1;
 }
+
+.appbar {
+    height: 60px;
+}
