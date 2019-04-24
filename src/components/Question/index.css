@@ -2,6 +2,7 @@
     margin: 30px auto !important;
     padding: 20px;
     border-radius: 0 !important;
+    text-align: center;
     /* max-width: 400px; */
 }
 
@@ -38,12 +39,11 @@
 }
 
 .loading-paper {
-    width: 75%;
+    width: 100%;
     height: 70px;
-    margin: 50px auto 30px auto;
+    margin: auto;
     text-align: center;
     padding: 30px;
-    border: black solid 2px;
 }
 
 #answer-message {

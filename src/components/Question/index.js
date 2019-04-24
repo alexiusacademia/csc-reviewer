@@ -206,7 +206,7 @@ export default class Question extends React.Component {
                 {
                     this.state.questionLoading
                     &&
-                    <Paper className='loading-paper' id='loading-paper'>
+                    <Paper className='paper' id='loading-paper'>
                         <Typography variant='subheading'>
                             Loading question. Please wait.
                         </Typography>

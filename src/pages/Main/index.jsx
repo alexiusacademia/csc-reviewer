@@ -16,9 +16,9 @@ export default class Main extends React.Component {
 
     toggleLeftDrawer = () => {
         this.setState({
-            openLeftDrawer: true
+            openLeftDrawer: true,
+            showQuestion: false
         })
-        console.log('Open drawer')
     }
 
     toggleDrawer = (open) => () => {
@@ -42,31 +42,33 @@ export default class Main extends React.Component {
 
         return (
             <Grid className='container'>
-                <Header loggedIn={this.props.loggedIn} toggleLeftDrawer={this.toggleLeftDrawer} />
-                {
-                    !this.props.loggedIn &&
-                    <Login />
-                }
-                <Grid>
-                    <Grid item>
-                        <Drawer 
-                            open={this.state.openLeftDrawer}
-                            onClose={this.toggleDrawer(false)}>
-                            <div 
-                                role="button" 
-                                onClick={this.toggleDrawer(false)}
-                                onKeyDown={this.toggleDrawer(false)}>
-                                <Categories onCategorySelected={this.categorySelected} />
-                            </div>   
-                        </Drawer>
-                    </Grid>
-                    <Grid item>
-                        {
-                            this.state.showQuestion &&
-                            <Question category={this.state.selectedCategory} />
-                        }
-                    </Grid>
+                <Grid item xs={12}>
+                    <Header loggedIn={this.props.loggedIn} toggleLeftDrawer={this.toggleLeftDrawer} />
+                    {
+                        !this.props.loggedIn &&
+                        <Login />
+                    }
                 </Grid>
+                <Grid item xs={4}>
+                    <Drawer
+                        open={this.state.openLeftDrawer}
+                        onClose={this.toggleDrawer(false)}>
+                        <div
+                            role="button"
+                            onClick={this.toggleDrawer(false)}
+                            onKeyDown={this.toggleDrawer(false)}>
+                            <Categories onCategorySelected={this.categorySelected} />
+                        </div>
+                    </Drawer>
+                </Grid>
+
+                <Grid item xs={12}>
+                    {
+                        this.state.showQuestion &&
+                        <Question category={this.state.selectedCategory} />
+                    }
+                </Grid>
+
             </Grid>
         )
     }
