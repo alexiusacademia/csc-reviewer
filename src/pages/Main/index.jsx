@@ -5,6 +5,7 @@ import Question from '../../components/Question'
 import Header from '../../components/Header'
 import './index.css'
 import { Drawer, Hidden, CssBaseline, withStyles, Typography } from '@material-ui/core'
+import WelcomeMessage from '../../components/WelcomeMessage';
 
 const drawerWidth = 240
 
@@ -132,6 +133,10 @@ class Main extends React.Component {
                     {
                         this.state.showQuestion && this.props.loggedIn &&
                         <Question category={this.state.selectedCategory} />
+                    }
+                    {
+                        !this.state.showQuestion &&
+                        <WelcomeMessage />
                     }
                     {
                         !this.props.loggedIn &&
