@@ -14,9 +14,14 @@ export default class Header extends React.Component {
         return (
             <AppBar position='fixed' className='appbar'>
                 <Toolbar>
-                    <IconButton color='inherit' onClick={this.toggleDrawer}>
-                        <MenuIcon />
-                    </IconButton>
+                    {
+                        this.props.loggedIn
+                        &&
+                        <IconButton color='inherit' onClick={this.toggleDrawer}>
+                            <MenuIcon />
+                        </IconButton>
+                    }
+
                     <Typography variant="h5" className="app-title" color="inherit" >
                         Civil Service Reviewer
                     </Typography>
