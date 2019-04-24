@@ -27,7 +27,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Header loggedIn={this.state.loggedIn}/>
         <Main loggedIn={this.state.loggedIn} />
       </div>
     );

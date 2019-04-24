@@ -16,9 +16,9 @@
 }
 
 .loading-paper {
-    width: 75%;
+    width: 100px;
     height: 70px;
-    margin: 50px auto 30px auto !important;
+    margin: 50px 10px 30px 10px !important;
     text-align: center;
     padding: 30px;
 }

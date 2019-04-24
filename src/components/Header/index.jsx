@@ -6,15 +6,8 @@ import Logout from '../../components/Logout'
 import './index.css'
 
 export default class Header extends React.Component {
-
-    state = {
-        open: false
-    }
-
     toggleDrawer = (open) => {
-        this.setState({
-            open: open
-        })
+        this.props.toggleLeftDrawer()
     }
 
     render() {
@@ -33,9 +26,6 @@ export default class Header extends React.Component {
                         <Logout />
                     }
                 </Toolbar>
-                <Drawer open={this.state.open}>
-                    <Categories />
-                </Drawer>
             </AppBar>
         )
     }

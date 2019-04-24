@@ -40,17 +40,18 @@ export default class Categories extends React.Component {
     }
 
     handleCategoryClick = (id) => {
-        this.setState({
+        /* this.setState({
             selectedCategory: id,
             showQuestion: true
-        })
+        }) */
+        this.props.onCategorySelected(id)
     }
 
     render() {
         return (
             <Fragment>
                 <Paper className='category-paper'>
-                    <Typography variant='headline' className='bg' color='inherit'>
+                    <Typography variant='headline' color='inherit'>
                         Categories
                     </Typography>
                     <Divider />
@@ -74,7 +75,7 @@ export default class Categories extends React.Component {
                         this.state.categoriesLoading &&
                         <Paper className='loading-paper'>
                             <Typography variant='subheading'>
-                                Loading categories. Please wait.
+                                Please wait.
                             </Typography>
                             <LinearProgress color='primary'/>
                         </Paper>
