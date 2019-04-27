@@ -6,6 +6,7 @@ import Header from '../../components/Header'
 import './index.css'
 import { Drawer, Hidden, CssBaseline, withStyles, Typography } from '@material-ui/core'
 import WelcomeMessage from '../../components/WelcomeMessage';
+import Footer from '../../components/Footer';
 
 const drawerWidth = 240
 
@@ -142,6 +143,7 @@ class Main extends React.Component {
                         !this.props.loggedIn &&
                         <Login />
                     }
+                    <Footer />
                 </main>
             </div>
         )

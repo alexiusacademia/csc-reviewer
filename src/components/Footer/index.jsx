@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react'
+import './index.css'
 
 export default class Footer extends React.Component {
     render() {
         return (
-            <Fragment>
-                
-            </Fragment>
+            <div className='footer'>
+                Footer
+            </div>
         )
     }
 }
