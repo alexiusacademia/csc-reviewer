@@ -143,8 +143,9 @@ class Main extends React.Component {
                         !this.props.loggedIn &&
                         <Login />
                     }
-                    <Footer />
+                    
                 </main>
+                <Footer />
             </div>
         )
     }
