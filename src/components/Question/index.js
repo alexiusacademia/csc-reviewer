@@ -177,9 +177,11 @@ export default class Question extends React.Component {
                             <Paper id='answer-message' elevation={4}>
                                 <Typography variant='h6' color='inherit'>
                                     The correct answer is {this.state.correctAnswer}.
+                                    <br/>
                                 </Typography>
                             </Paper>
                             {
+                                // Explanation
                                 this.state.question.explanation !== "" &&
                                 <Grid item xs={12}>
                                     <Paper id='explanation'>
