@@ -144,8 +144,9 @@ export default class Question extends React.Component {
                             Question
                         </Typography>
 
-                        <Typography variant='subheading' className='question'>
+                        <Typography xs={12} variant='subheading' className='question'>
                             {
+                                // Question
                                 this.state.question.question.split('\\n').map((item, id) =>
                                     <div key={id}>
                                         {
@@ -164,27 +165,35 @@ export default class Question extends React.Component {
                         </Typography>
 
                         <Grid container spacing={16}>
-                            {this.shuffle(this.state.question.choices).map(choice =>
+                            { // Choices 
+                            this.shuffle(this.state.question.choices).map(choice =>
                                 <Grid item xs={12} sm={6} md={3} key={choice} id='choice-box'
                                     onClick={
                                         evt => this.handleChoiceClick(evt, choice)
                                     }
                                 >
-                                    <div className='choice MuiPaper-root-10 MuiPaper-elevation2-14'>{choice}</div>
+                                    <div className='choice MuiPaper-root-10 MuiPaper-elevation2-14'>
+                                        { choice.split('\\n').map(line =>
+                                            line) }
+                                    </div>
                                 </Grid>
                             )}
 
-                            <Paper id='answer-message' elevation={4}>
-                                <Typography variant='h6' color='inherit'>
-                                    The correct answer is {this.state.correctAnswer}.
-                                    <br/>
-                                </Typography>
-                            </Paper>
+                            <Grid item xs={12} className="correct-answer">
+                                <Paper id='answer-message' elevation={4}>
+                                    { /* Correct answer */ }
+                                    <Typography variant='h6' color='inherit'>
+                                        The correct answer is {this.state.correctAnswer}.
+                                    </Typography>
+                                </Paper>
+                            </Grid>
+
+                            
                             {
                                 // Explanation
                                 this.state.question.explanation !== "" &&
                                 <Grid item xs={12}>
-                                    <Paper id='explanation'>
+                                    <Paper id='explanation' className='explanation'>
 
                                         {this.state.question.explanation.split('\\n').map((item) =>
                                             <div key={item}>
@@ -205,8 +214,8 @@ export default class Question extends React.Component {
                                     </Paper>
                                 </Grid>
                             }
-
                             <Button id="btnNextQuestion"
+                                className="buttons"
                                 xs={12}
                                 variant="contained"
                                 color="primary"
