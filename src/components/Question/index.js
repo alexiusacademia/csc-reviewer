@@ -173,8 +173,21 @@ export default class Question extends React.Component {
                                     }
                                 >
                                     <div className='choice MuiPaper-root-10 MuiPaper-elevation2-14'>
-                                        { choice.split('\\n').map(line =>
-                                            line) }
+                                        { choice.split('\\n').map((line) =>
+                                            <Fragment>
+                                                {
+                                                    this.isEquation(line) &&
+                                                    <Provider>
+                                                        <Node inline>{this.getEquation(line)}</Node>
+                                                    </Provider>
+                                                }
+                                                {
+                                                    !this.isEquation(line) &&
+                                                    <Fragment>{line}</Fragment>
+                                                }
+                                            </Fragment>
+                                            
+                                        ) }
                                     </div>
                                 </Grid>
                             )}
