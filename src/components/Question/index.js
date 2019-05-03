@@ -261,8 +261,8 @@ export default class Question extends React.Component {
 
                 {
                     !this.state.questionLoading && !this.state.hasQuestion &&
-                    <Paper>
-                        <p>There are no question available for you from this category. Please choose other category.</p>
+                    <Paper className="no-question-available">
+                        <p>There are no question available for you from this category. Please choose other category to answer.</p>
                         
                     </Paper>
                 }

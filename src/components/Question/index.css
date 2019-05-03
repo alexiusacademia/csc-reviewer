@@ -69,3 +69,10 @@
 .display-linebreak {
     white-space: nowrap;
 }
+
+.no-question-available {
+    width: 70%;
+    margin: 200px auto;
+    padding: 20px;
+    color: rgb(200, 0, 0)
+}
