@@ -16,7 +16,8 @@ export default class Question extends React.Component {
         showNextQuestionButton: false,
         category: null,
         question: {},
-        correctAnswer: ''
+        correctAnswer: '',
+        hasQuestion: false
     }
 
     componentWillMount() {
@@ -55,13 +56,18 @@ export default class Question extends React.Component {
                     this.setState({
                         question: q[index],
                         correctAnswer: q[index].choices[0],
-                        questionLoading: false
+                        questionLoading: false,
+                        hasQuestion: true
                     })
 
                     this.choiceHandler = true
                 } else {
-                    document.getElementById('loading-paper').setAttribute('style',
-                        'visibility: hidden;')
+                    this.setState({
+                        hasQuestion: false,
+                        questionLoading: false
+                    })
+                    /* document.getElementById('loading-paper').setAttribute('style',
+                        'visibility: hidden;') */
                 }
             })
     }
@@ -138,7 +144,7 @@ export default class Question extends React.Component {
         return (
             <Fragment>
                 {
-                    !this.state.questionLoading &&
+                    !this.state.questionLoading && this.state.hasQuestion &&
                     <Paper className='paper'>
                         <Typography variant='headline' className='question-title'>
                             Question
@@ -173,8 +179,8 @@ export default class Question extends React.Component {
                                     }
                                 >
                                     <div className='choice MuiPaper-root-10 MuiPaper-elevation2-14'>
-                                        { choice.split('\\n').map((line) =>
-                                            <Fragment>
+                                        { choice.split('\\n').map((line, index) =>
+                                            <Fragment key={index}>
                                                 {
                                                     this.isEquation(line) &&
                                                     <Provider>
@@ -243,13 +249,21 @@ export default class Question extends React.Component {
                 }
 
                 {
-                    this.state.questionLoading
+                    this.state.questionLoading && this.state.hasQuestion
                     &&
                     <Paper className='paper' id='loading-paper'>
                         <Typography variant='subheading'>
                             Loading question. Please wait.
                         </Typography>
                         <LinearProgress color='primary' />
+                    </Paper>
+                }
+
+                {
+                    !this.state.questionLoading && !this.state.hasQuestion &&
+                    <Paper>
+                        <p>There are no question available for you from this category. Please choose other category.</p>
+                        
                     </Paper>
                 }
 
