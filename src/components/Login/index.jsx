@@ -27,6 +27,11 @@ export default class Login extends React.Component {
                             alt="Google Sign In"
                             onClick={this.login} src="assets/btn_google_signin_dark_normal_web.png"
                             className="signin-button"/>
+
+                        <Typography variant='subtitle2'>
+                            <br/>
+                            By signing in, you agree to our <a href="#">Privacy Policy</a> and <a href="#">Terms and Conditions</a>.
+                        </Typography>
                     </Paper>
                 </Grid>
             </div>
