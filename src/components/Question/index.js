@@ -72,6 +72,12 @@ export default class Question extends React.Component {
             })
     }
 
+    arraymove = (arr, fromIndex, toIndex) => {
+        var element = arr[fromIndex]
+        arr.splice(fromIndex, 1)
+        arr.splice(toIndex, 0, element)
+    }
+
     shuffle = function (array) {
 
         var currentIndex = array.length
@@ -88,6 +94,15 @@ export default class Question extends React.Component {
             array[currentIndex] = array[randomIndex]
             array[randomIndex] = temporaryValue
         }
+
+        array.map((c, i) => {
+            if (c[0] === '*') {
+                c = c.substr(5, c.length-5)
+                array.splice(i, 1)
+                array.splice(3, 0, c)
+                return array
+            }
+        })
 
         return array;
 
@@ -172,8 +187,8 @@ export default class Question extends React.Component {
 
                         <Grid container spacing={16}>
                             { // Choices 
-                            this.shuffle(this.state.question.choices).map(choice =>
-                                <Grid item xs={12} sm={6} md={3} key={choice} id='choice-box'
+                            this.shuffle(this.state.question.choices).map((choice, key) =>
+                                <Grid item xs={12} sm={6} md={3} key={key} id='choice-box'
                                     onClick={
                                         evt => this.handleChoiceClick(evt, choice)
                                     }
