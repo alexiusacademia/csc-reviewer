@@ -110,6 +110,7 @@ export default class Question extends React.Component {
 
     handleChoiceClick = (evt, answer) => {
         if (this.choiceHandler) {
+            // Handle the all of the above choice if present
             let correctAns = this.state.correctAnswer
             if (this.state.correctAnswer[0] === '*') {
                 correctAns = correctAns.substr(5, correctAns.length - 5)
