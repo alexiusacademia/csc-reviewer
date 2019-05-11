@@ -88,7 +88,7 @@ export default class Categories extends React.Component {
             const currentTime = Date.now() / 1000 / 60
             const maxIdleTime = 3.0 // Minutes
 
-            db.collection('users').get().then((result2) => {
+            db.collection('users').onSnapshot((result2) => {
                 let active_users_count = 0
                 result2.forEach((doc2) => {
                     const lastActive = doc2.data().time_active
