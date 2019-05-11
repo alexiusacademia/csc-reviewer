@@ -11,6 +11,12 @@ import './index.css'
 
 export default class Categories extends React.Component {
 
+    constructor(props) {
+        super(props)
+
+        this._isMounted = false
+    }
+
     state = {
         categories: [],
         categoriesLoading: true,
@@ -22,6 +28,7 @@ export default class Categories extends React.Component {
     }
 
     componentDidMount() {
+        this._isMounted = true
         var cats = []
         const db = firebase.firestore()
         db.collection('categories').get()
@@ -41,9 +48,19 @@ export default class Categories extends React.Component {
         // this.manageState(db)
     }
 
-    componentWillReceiveProps() {
+    componentWillMount() {
+        this._isMounted = false
         const db = firebase.firestore()
         this.manageState(db)
+    }
+
+    componentWillReceiveProps(props) {
+        const db = firebase.firestore()
+        this.manageState(db)
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false
     }
 
     manageState = (db) => {
@@ -77,9 +94,8 @@ export default class Categories extends React.Component {
                     const lastActive = doc2.data().time_active
                     if ((currentTime - lastActive) <= maxIdleTime) {
                         active_users_count++
-                        console.log(doc2.data())
                     }
-                    this.setState({
+                    this._isMounted && this.setState({
                         activeUsers: active_users_count
                     })
                 })
@@ -120,7 +136,7 @@ export default class Categories extends React.Component {
                             )}
                         </List>
                         <div>
-                            Active Users: {this.state.activeUsers}
+                            Active Users: { this.state.activeUsers }
                         </div>
                         </Fragment>
                     }
