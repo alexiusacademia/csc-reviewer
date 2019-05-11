@@ -37,6 +37,33 @@ export default class Categories extends React.Component {
                     categoriesLoading: false
                 })
             })
+        this.manageState(db)
+    }
+
+    manageState = (db) => {
+        firebase.auth().onAuthStateChanged((user) => {
+            
+
+            db.collection('users').where('uid', '==', user.uid).get().then((result) => {
+                let docs = []
+                result.forEach((doc) => {
+                    docs.push(doc.id)
+                    // console.log(doc.id)
+                })
+
+                if (docs.length === 0) {
+                    db.collection('users').add({
+                        uid: user.uid,
+                        time_active: Date.now() / 1000 / 60
+                    }) 
+                } else {
+                    db.collection('users').doc(docs[0]).set({
+                        uid: user.uid,
+                        time_active: Date.now() / 1000 / 60
+                    })
+                }
+            })
+        })
     }
 
     handleCategoryClick = (id) => {
