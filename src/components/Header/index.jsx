@@ -1,7 +1,6 @@
 import React from 'react'
-import { AppBar, Toolbar, Typography, IconButton, Drawer, Hidden } from '@material-ui/core'
+import { AppBar, Toolbar, Typography, IconButton, Hidden } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
-import Categories from '../Categories'
 import Logout from '../../components/Logout'
 import './index.css'
 
