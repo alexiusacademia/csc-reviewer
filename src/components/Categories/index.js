@@ -17,7 +17,8 @@ export default class Categories extends React.Component {
         selectedCategory: 0,
         showQuestion: false,
         question: null,
-        questionLoading: false
+        questionLoading: false,
+        activeUsers: 0
     }
 
     componentDidMount() {
@@ -37,13 +38,16 @@ export default class Categories extends React.Component {
                     categoriesLoading: false
                 })
             })
+        // this.manageState(db)
+    }
+
+    componentWillReceiveProps() {
+        const db = firebase.firestore()
         this.manageState(db)
     }
 
     manageState = (db) => {
         firebase.auth().onAuthStateChanged((user) => {
-            
-
             db.collection('users').where('uid', '==', user.uid).get().then((result) => {
                 let docs = []
                 result.forEach((doc) => {
@@ -62,6 +66,23 @@ export default class Categories extends React.Component {
                         time_active: Date.now() / 1000 / 60
                     })
                 }
+            })
+
+            const currentTime = Date.now() / 1000 / 60
+            const maxIdleTime = 3.0 // Minutes
+
+            db.collection('users').get().then((result2) => {
+                let active_users_count = 0
+                result2.forEach((doc2) => {
+                    const lastActive = doc2.data().time_active
+                    if ((currentTime - lastActive) <= maxIdleTime) {
+                        active_users_count++
+                        console.log(doc2.data())
+                    }
+                    this.setState({
+                        activeUsers: active_users_count
+                    })
+                })
             })
         })
     }
@@ -84,7 +105,8 @@ export default class Categories extends React.Component {
                     <Divider />
                     {
                         !this.state.categoriesLoading &&
-                        <List>
+                        <Fragment>
+                            <List>
                             {this.state.categories.map(c =>
                                 <div key={c.id} className='bg'>
                                     <ListItem
@@ -97,6 +119,10 @@ export default class Categories extends React.Component {
                                 </div>
                             )}
                         </List>
+                        <div>
+                            Active Users: {this.state.activeUsers}
+                        </div>
+                        </Fragment>
                     }
                     {
                         this.state.categoriesLoading &&
