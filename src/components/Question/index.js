@@ -110,7 +110,14 @@ export default class Question extends React.Component {
 
     handleChoiceClick = (evt, answer) => {
         if (this.choiceHandler) {
-            if (answer === this.state.correctAnswer) {
+            let correctAns = this.state.correctAnswer
+            if (this.state.correctAnswer[0] === '*') {
+                correctAns = correctAns.substr(5, correctAns.length - 5)
+            }
+            this.setState({
+                correctAnswer: correctAns
+            })
+            if (answer === correctAns) {
                 evt.target.classList.add("correct")
             } else {
                 evt.target.classList.add("wrong")
