@@ -115,9 +115,10 @@ export default class Question extends React.Component {
             if (this.state.correctAnswer[0] === '*') {
                 correctAns = correctAns.substr(5, correctAns.length - 5)
             }
-            this.setState({
+            /* this.setState({
+                // This is the bug!
                 correctAnswer: correctAns
-            })
+            }) */
             if (answer === correctAns) {
                 evt.target.classList.add("correct")
             } else {
@@ -131,6 +132,8 @@ export default class Question extends React.Component {
             // Show answer
             document.getElementById('answer-message').setAttribute('style',
                 'visibility: visible; display: block;')
+
+            document.getElementById('answer-message').innerHTML = "<Typography variant='h6' color='inherit'>The correct answer is " + correctAns + ".</Typography>"
 
             // Show explanation
             if (this.state.question.explanation !== "") {
