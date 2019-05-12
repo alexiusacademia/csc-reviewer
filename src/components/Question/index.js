@@ -194,6 +194,12 @@ export default class Question extends React.Component {
                                     </div>
                                 )
                             }
+                            {
+                                this.state.question.img_url &&
+                                <div>
+                                    <img src={this.state.question.img_url} />
+                                </div>
+                            }
                         </Typography>
 
                         <Grid container spacing={16}>
