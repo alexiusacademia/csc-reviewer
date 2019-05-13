@@ -234,7 +234,7 @@ export default class Question extends React.Component {
                                 <Paper id='answer-message' elevation={4}>
                                     { /* Correct answer */ }
                                     <Typography variant='h6' color='inherit'>
-                                        The correct answer is {this.state.correctAnswer}.
+                                        The correct answer is: <span className='correct-answer-highlight'>{this.state.correctAnswer}</span>
                                     </Typography>
                                 </Paper>
                             </Grid>

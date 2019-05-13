@@ -76,3 +76,8 @@
     padding: 20px;
     color: rgb(200, 0, 0)
 }
+
+.correct-answer-highlight {
+    text-decoration: underline !important;
+    font-weight: bolder;
+}
